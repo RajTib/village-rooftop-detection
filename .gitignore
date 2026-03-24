@@ -1,0 +1,48 @@
+# 🔥 Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+
+# 🔥 Virtual Environments
+venv/
+.env/
+.env.*
+
+# 🔥 VS Code
+.vscode/
+*.code-workspace
+
+# 🔥 Jupyter (if you ever use it)
+.ipynb_checkpoints/
+
+# 🔥 Logs
+*.log
+
+# 🔥 OS junk
+.DS_Store
+Thumbs.db
+
+# 🔥 Data (IMPORTANT for you)
+data/
+dataset/
+*.tif
+*.tiff
+*.png
+*.jpg
+*.jpeg
+
+# 🔥 Model files (future proofing)
+*.pt
+*.pth
+*.onnx
+
+# 🔥 Outputs
+outputs/
+runs/
+results/
+
+# 🔥 Temporary files
+*.tmp
+*.cache
