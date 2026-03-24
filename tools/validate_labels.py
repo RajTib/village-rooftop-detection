@@ -1,6 +1,13 @@
 import os
+import argparse
+from pathlib import Path
 
-LABEL_DIR = r"D:\Teams\Ardra\TechfestIITB\GeoAI\workspace\dataset\processed\labels\Badetumnar\rooftops"  # CHANGE THIS
+parser = argparse.ArgumentParser(description="Validate Labels")
+parser.add_argument("--label_dir", required=True, help="Enter the directory containing lables")
+
+args = parser.parse_args()
+
+LABEL_DIR = Path(args.label_dir)
 
 total_files = 0
 empty_files = 0
