@@ -2,10 +2,19 @@ import os
 import rasterio
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
+from pathlib import Path
+import argparse
 
-IMAGE_DIR = r"D:\Teams\Ardra\TechfestIITB\GeoAI\3_training\images\mungdanda\utility_positive"
-LABEL_DIR = r"D:\Teams\Ardra\TechfestIITB\GeoAI\3_training\labels\mungdanda\utility\positives"
-OUT_DIR   = r"D:\Teams\Ardra\TechfestIITB\GeoAI\4_output\mungdanda\utilities"
+parser = argparse.ArgumentParser(description="Visual checker")
+parser.add_argument("--image_dir", required=True, help="Enter the directory containing images")
+parser.add_argument("--label_dir", required=True, help="Enter the directory containing labels")
+parser.add_argument("--output_dir", required=True, help="Enter the directory for the output")
+
+args = parser.parse_args()
+
+IMAGE_DIR = Path(args.input_dir)
+LABEL_DIR = Path(args.label_dir)
+OUT_DIR = Path(args.output_dir)
 
 os.makedirs(OUT_DIR, exist_ok=True)
 
