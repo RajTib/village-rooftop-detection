@@ -3,14 +3,19 @@ import shutil
 import random
 from pathlib import Path
 from tqdm import tqdm
-
+import argparse
 
 # ================= CONFIG =================
-DIR_PATH = Path(__file__).resolve().parents[2]
-IMAGES_ALL = DIR_PATH / "dataset" / "tiles_rgb"
-LABELS_ALL = DIR_PATH / "dataset" / "labels_raw"
+parser = argparse.ArgumentParser(description="Split the dataset into train, val and test")
+parser.add_argument("--input_images", required=True, help= "Input images (select RGB)")
+parser.add_argument("--input_labels", required=True, help= "Input labels")
+parser.add_argument("--output_root", required=True, help= "Output root")
 
-OUT_ROOT = DIR_PATH / "dataset"
+args = parser.parse_args()
+
+images_all = Path(args.input_images)
+labels_all = Path(args.input_labels)
+out_root = Path(args.output_root)
 
 TRAIN_RATIO = 0.7
 VAL_RATIO   = 0.2
@@ -20,10 +25,6 @@ SEED = 42
 # ==========================================
 
 random.seed(SEED)
-
-images_all = Path(IMAGES_ALL)
-labels_all = Path(LABELS_ALL)
-out_root   = Path(OUT_ROOT)
 
 # Sanity checks
 if not images_all.exists():

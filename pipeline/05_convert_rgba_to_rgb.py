@@ -3,11 +3,17 @@ import numpy as np
 import cv2
 from pathlib import Path
 from tqdm import tqdm
+import argparse
 
-DIR_PATH = Path(__file__).resolve().parents[2]
+parser = argparse.ArgumentParser(description="Covert 4-band images to 3-band for YOLO")
+parser.add_argument("--source", required=True, help="Enter the source for images")
+parser.add_argument("--destination", required=True, help="Enter the destination for images")
 
-SRC = DIR_PATH / "dataset" / "tiles_test"
-DST = DIR_PATH / "dataset" / "tiles_rgb"
+args = parser.parse_args()
+
+SRC = Path(args.source)
+DST = Path(args.destination)
+
 DST.mkdir(parents=True, exist_ok=True)
 
 tifs = list(SRC.glob("*.tif"))

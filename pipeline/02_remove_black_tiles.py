@@ -2,13 +2,15 @@ import os
 import shutil
 from pathlib import Path
 from PIL import Image, ImageStat
+import argparse
 
-# 🔥 Get project root dynamically
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+parser = argparse.ArgumentParser(description="Remove black tiles")
+parser.add_argument("--source_dir", required=True, help="Enter the tiles source path")
+parser.add_argument("--target_dir", required=True, help="Enter the path for black tiles")
 
-# --- SETTINGS ---
-source_dir = PROJECT_ROOT / "dataset" / "tiles_test"
-target_dir = source_dir / "black_tiles"
+args = parser.parse_args()
+source_dir = Path(args.source_dir)
+target_dir = Path(args.target_dir)
 
 # Increased threshold to catch noisy "near-black" tiles
 threshold = 11.0

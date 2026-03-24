@@ -4,12 +4,18 @@ from shapely.geometry import shape, box
 import fiona
 from tqdm import tqdm
 from pathlib import Path
+import argparse
 
-DIR_PATH = Path(__file__).resolve().parents[2]
+parser = argparse.ArgumentParser(description="Generate labels")
+parser.add_argument("--input_image", required=True, help="Enter the image directory")
+parser.add_argument("--input_shapefile", required=True, help="Enter the path to shapefile")
+parser.add_argument("--output_label", required=True, help="Output labels")
 
-IMG_DIR = DIR_PATH / "dataset" / "tiles_test"
-SHAPEFILE_DIR = DIR_PATH / "dataset" / "shapefiles"
-LABELS_DIR = DIR_PATH / "dataset" / "labels_raw"
+args = parser.parse_args()
+
+IMG_DIR = Path(args.input_image)
+SHAPEFILE_DIR = Path(args.input_shapefile)
+LABELS_DIR = Path(args.output_label)
 
 def shp_to_yolo_boxes(
     image_dir,
